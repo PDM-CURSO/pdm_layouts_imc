@@ -1,16 +1,21 @@
-# imc_calc
+# App 2
 
-A new Flutter project.
+App para practicar el disenio de layouts con widgets mas comunes
+containers, stacks, row/columns, text fields, etc...
+Calcular el IMC y mostrar texto en AlertDialogs
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Recuerda que despues de clonar el proyecto, abrir una terminal dentro de la carpeta del proyecto y ejecutar el comando:
 
-A few resources to get you started if this is your first Flutter project:
+```sh
+flutter packages get
+``` 
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## App Screenshot
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+<img src="screenshot/Capture0.PNG" width="240" height="480" />
+<img src="screenshot/Capture1.PNG" width="240" height="480" />
+<img src="screenshot/Capture2.PNG" width="240" height="480" />
+
