@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -40,6 +39,13 @@ Edad	  IMC ideal
 65-90	  25-30
   ''';
 
+  void _resetAll() {
+    _genero = null;
+    _txtAltura.clear();
+    _txtPeso.clear();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +53,9 @@ Edad	  IMC ideal
         title: Text("Calcular IMC"),
         actions: [
           IconButton(
-            onPressed: () {
-              _genero = null;
-              _txtAltura.clear();
-              _txtPeso.clear();
-              setState(() {});
-            },
+            onPressed: _resetAll,
             icon: Icon(Icons.delete_forever),
+            tooltip: "Reiniciar calculadora",
           ),
         ],
       ),
@@ -71,9 +73,8 @@ Edad	  IMC ideal
                     color: _genero == false ? Colors.indigo : Colors.grey,
                   ),
                   onPressed: () {
-                    setState(() {
-                      _genero = false;
-                    });
+                    _genero = false;
+                    setState(() {});
                   },
                 ),
                 VerticalDivider(),
@@ -83,9 +84,8 @@ Edad	  IMC ideal
                     color: _genero == true ? Colors.indigo : Colors.grey,
                   ),
                   onPressed: () {
-                    setState(() {
-                      _genero = true;
-                    });
+                    _genero = true;
+                    setState(() {});
                   },
                 ),
               ],
@@ -111,27 +111,29 @@ Edad	  IMC ideal
             ),
             MaterialButton(
               child: Text("Calcular"),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return AlertDialog(
-                      title: Text("Tu IMC: ${_imc().toStringAsFixed(2)}"),
-                      content: Text("${_genero! ? _hb : _mj}"),
-                      actions: [
-                        MaterialButton(
-                          child: Text("Aceptar"),
-                          onPressed: () => Navigator.of(context).pop(),
-                        )
-                      ],
-                    );
-                  },
-                );
-              },
+              onPressed: _showResults,
             ),
           ],
         ),
       ),
+    );
+  }
+
+  void _showResults() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Tu IMC: ${_imc().toStringAsFixed(2)}"),
+          content: Text("${_genero! ? _hb : _mj}"),
+          actions: [
+            MaterialButton(
+              child: Text("Aceptar"),
+              onPressed: () => Navigator.of(context).pop(),
+            )
+          ],
+        );
+      },
     );
   }
 
